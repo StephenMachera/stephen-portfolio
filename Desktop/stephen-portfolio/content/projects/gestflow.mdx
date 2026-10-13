@@ -1,0 +1,53 @@
+---
+title: "GestFlow"
+---
+
+Moving work from one computer to another is still clumsy. You upload it to the cloud,
+email it to yourself, or reach for a USB stick.
+
+GestFlow asks a simpler question: **what if you could just pick it up and throw it?**
+
+Make a grab gesture in front of your laptop, and GestFlow captures what you're working
+on — a file in VS Code, a page in your browser, a video in VLC. Throw your hand to the
+right, and it appears on the other computer, open and ready, exactly where you left off.
+No setup, no cables, no accounts.
+
+## How it works
+
+I built GestFlow in six phases, each one a working piece on its own.
+
+**1. The gesture engine.** MediaPipe tracks 21 points on your hand through a normal
+webcam. A TensorFlow model I trained reads those points and recognises **8 gestures**
+— grab, open palm, pinch, throw right, throw left, expand, select multiple and cancel —
+with **98.19% accuracy**. It runs as a lightweight TFLite model.
+
+**2. The content grabber.** When you grab, GestFlow works out what's on your screen
+and asks the right app for its state. Each app has its own adapter: a Chrome extension
+for the browser, an extension for VS Code, and a window-based adapter for VLC.
+
+**3. State capture.** Everything is packed into a small, validated packet — what the
+content is, where you were in it, and which device it came from. Packets expire after
+30 seconds, so nothing old gets thrown by accident.
+
+**4. The transfer.** Devices on the same Wi-Fi find each other automatically using
+mDNS — that's the "zero setup" part. Packets travel directly between computers over
+WebSockets, peer-to-peer, with retries and acknowledgements so nothing goes missing.
+
+**5. The receiver.** On the other side, GestFlow opens the right app and puts your
+work back in place.
+
+**6. Putting it together.** The camera runs silently in the background, and a desktop
+notification confirms each grab and each throw.
+
+## A problem worth mentioning
+
+Early on, devices kept "forgetting" each other. A peer that went quiet for 30 seconds
+was treated as gone — far too aggressive for real Wi-Fi. The fix was to give peers
+more patience (120 seconds), have every device re-announce itself every 20 seconds,
+and send a small keep-alive ping every 15 seconds. Small numbers, big difference.
+
+## Where it is now
+
+All six phases are complete and working end to end, tested between an Ubuntu laptop
+and a Windows 11 machine on the same network. What's left before version 1 is polish:
+clearer error messages, a simple setup script, and a demo video.

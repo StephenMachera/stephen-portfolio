@@ -1,26 +1,162 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* 1. Colours and animations — become Tailwind classes */
+@theme {
+  --color-ink: #0c0e12;        /* page background */
+  --color-surface: #14171d;    /* cards and panels */
+  --color-line: rgb(236 233 226 / 0.12); /* thin borders */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-fg: #ece9e2;         /* main text */
+  --color-fg-soft: #c9c6be;    /* paragraphs */
+  --color-fg-muted: #a3a29c;   /* labels, small text */
+  --color-fg-faint: #7d7c77;   /* least important text */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-accent: #ffce47;     /* yellow: buttons, links, dots */
+
+   --color-ink-deep: #07080a;
+
+  /* gives you the class: animate-dot-wander */
+  --animate-dot-wander: dot-wander 16s ease-in-out infinite alternate;
+
+  @keyframes dot-wander {
+    0%   { mask-position: 12% 18%; }
+    30%  { mask-position: 72% 10%; }
+    60%  { mask-position: 92% 70%; }
+    100% { mask-position: 40% 85%; }
+  }
+
+  --animate-float: float 3.2s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+
+    /* gives you the class: animate-float-slow */
+  --animate-float-slow: float-slow 7s ease-in-out infinite;
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-14px) rotate(-1deg); }
+  }
+
+    /* gives you the class: animate-blink */
+  --animate-blink: blink 1s step-end infinite;
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+  }
+
+    /* gives you the class: animate-progress */
+  --animate-progress: progress 5s linear both;
+
+  @keyframes progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 2. Fonts — the real fonts get loaded in layout.tsx */
+@theme inline {
+  --font-sans: var(--font-bricolage);
+  --font-mono: var(--font-plex-mono);
+}
+
+/* 3. Base styles */
+@layer base {
+  html {
+    background-color: var(--color-ink);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-ink);
+  }
+}
+
+/* 4. The live dot grid (used in the Hero) */
+@layer components {
+  /* the box that holds all the dot layers, fades out at the bottom */
+  .dot-field {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, #000 65%, transparent);
+  }
+
+  /* one layer of dots — the base, faint version */
+  .dot-grid {
+    --dot-size: 1.2px;
+    --dot-gap: 24px;
+    --dot-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      var(--dot-color) var(--dot-size),
+      transparent calc(var(--dot-size) + 0.6px)
+    );
+    background-size: var(--dot-gap) var(--dot-gap);
+  }
+
+  /* fades the faint dots away from the text on the left */
+  .dot-grid-faint {
+    mask-image: radial-gradient(ellipse 90% 85% at 72% 35%, #000 15%, transparent 80%);
+  }
+
+  /* bright dots, only visible inside a round "spotlight" */
+  .dot-grid-bright {
+    --dot-size: 1.4px;
+    --dot-color: color-mix(in srgb, var(--color-accent) 95%, transparent);
+    mask-image: radial-gradient(circle, #000 0%, transparent 70%);
+    mask-size: 620px 620px;
+    mask-repeat: no-repeat;
+  }
+
+  /* the spotlight that follows the mouse — position comes from --mx / --my */
+  .dot-cursor {
+    --dot-size: 1.6px;
+    mask-size: 340px 340px;
+    mask-position: calc(var(--mx, -9999px) - 170px) calc(var(--my, -9999px) - 170px);
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .dot-cursor[data-active="true"] {
+    opacity: 1;
+  }
+
+  /* smaller grid on phones */
+  @media (max-width: 640px) {
+    .dot-grid { --dot-gap: 20px; }
+    .dot-grid-bright { mask-size: 320px 320px; }
+  }
+
+  /* no mouse = no cursor spotlight */
+  @media (hover: none) {
+    .dot-cursor { display: none; }
+  }
+}
+
+/* 5. Calm everything down for people who turn off animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
