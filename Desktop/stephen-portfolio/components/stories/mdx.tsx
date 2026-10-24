@@ -5,7 +5,7 @@ function Quote(props: ComponentProps<"blockquote">) {
   return (
     <blockquote
       {...props}
-      className="not-prose relative my-12 rounded-3xl border border-line bg-surface/60 px-7 pb-8 pt-14 text-xl font-semibold leading-relaxed text-fg lg:px-10 lg:text-2xl"
+      className="not-prose relative my-12 rounded-3xl border border-line bg-surface px-7 pb-8 pt-14 text-xl font-semibold leading-relaxed text-fg lg:px-10 lg:text-2xl"
     >
       <span aria-hidden="true" className="absolute left-7 top-4 text-6xl font-extrabold leading-none text-accent lg:left-10">
         &ldquo;
@@ -21,7 +21,7 @@ export const mdxComponents = {
 
 // the reading styles, tuned to your theme
 export const proseClass = [
-  "prose prose-invert prose-lg max-w-[68ch]",
+  "prose prose-lg max-w-[68ch]",
   "prose-p:leading-[1.85] prose-p:text-fg-soft",
   "prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-fg",
   "prose-h2:mt-16 prose-h2:text-3xl",

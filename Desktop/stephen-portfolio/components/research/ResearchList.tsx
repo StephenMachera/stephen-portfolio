@@ -42,7 +42,7 @@ export default function ResearchList({ items, featuredSlug }: Props) {
                 aria-pressed={on}
                 className={`shrink-0 rounded-full border px-4 py-2 text-sm transition-colors ${
                   on
-                    ? "border-accent bg-accent font-semibold text-ink"
+                    ? "border-accent bg-accent font-semibold text-forest-deep"
                     : "border-line text-fg-muted hover:border-fg/40 hover:text-fg active:border-fg/40 active:text-fg"
                 }`}
               >
@@ -117,7 +117,7 @@ export default function ResearchList({ items, featuredSlug }: Props) {
 
                 <span
                   aria-hidden
-                  className="hidden size-11 place-items-center rounded-full border border-line text-fg-muted transition-all group-hover:-rotate-45 group-hover:border-accent group-hover:bg-accent group-hover:text-ink sm:grid"
+                  className="hidden size-11 place-items-center rounded-full border border-line text-fg-muted transition-all group-hover:-rotate-45 group-hover:border-accent group-hover:bg-accent group-hover:text-forest-deep sm:grid"
                 >
                   →
                 </span>

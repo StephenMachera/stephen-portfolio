@@ -3,7 +3,6 @@ import Link from "next/link";
 import { featured } from "@/lib/featured";
 import RollText from "@/components/ui/RollText";
 import SectionLabel from "@/components/motion/SectionLabel";
-import SectionDivider from "@/components/motion/SectionDivider";
 import SplitHeading from "@/components/motion/SplitHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { CardReveal, ZoomReveal } from "@/components/motion/CardReveal";
@@ -21,15 +20,15 @@ function StatusBadge({ status }: { status?: string }) {
 export default function FeaturedProjects() {
   return (
     <section id="projects" className="relative">
-      <SectionDivider />
 
-      <div className="mx-auto max-w-[88rem] px-6 py-20 lg:py-32">
+      <div className="mx-auto max-w-[88rem] px-6 py-16 lg:py-20">
         {/* Heading */}
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <SectionLabel>Featured projects</SectionLabel>
             <SplitHeading
               text="Things I've built"
+              accent={["built"]}
               className="mt-4 text-4xl font-extrabold tracking-tight lg:text-5xl"
             />
           </div>
@@ -104,7 +103,7 @@ export default function FeaturedProjects() {
 
                     <span
                       aria-hidden="true"
-                      className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-line bg-ink/40 text-sm transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-ink"
+                      className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-line bg-ink/40 text-sm transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-forest-deep"
                     >
                       <span className="inline-block -rotate-45 transition-transform duration-300 group-hover:rotate-0">
                         →

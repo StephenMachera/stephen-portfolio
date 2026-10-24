@@ -1,19 +1,13 @@
 import Hero from "@/components/home/Hero";
 import Intro from "@/components/home/Intro";
-import FeaturedProjects from "@/components/home/FeaturedProjects";
-import ResearchTeaser from "@/components/home/ResearchTeaser";
-import LatestStories from "@/components/home/LatestStories";
-import Doors from "@/components/home/Doors";
+import Marquee from "@/components/ui/Marquee";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Marquee className="-rotate-1" />
       <Intro />
-      <FeaturedProjects />
-      <ResearchTeaser />
-      <LatestStories />
-      <Doors />
     </>
   );
 }

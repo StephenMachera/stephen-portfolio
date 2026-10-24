@@ -10,7 +10,7 @@ export default function CodeLink({ href, className = "" }: Props) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="View source code on GitHub"
-      className={`group/code inline-flex min-h-9 items-center gap-2 rounded-full border border-line bg-ink/75 px-3.5 font-mono text-xs text-fg backdrop-blur transition-colors hover:border-accent hover:bg-accent hover:text-ink active:border-accent active:bg-accent active:text-ink ${className}`}
+      className={`group/code inline-flex min-h-9 items-center gap-2 rounded-full border border-line bg-ink/75 px-3.5 font-mono text-xs text-fg backdrop-blur transition-colors hover:border-accent hover:bg-accent hover:text-forest-deep active:border-accent active:bg-accent active:text-forest-deep ${className}`}
     >
       <svg
         aria-hidden

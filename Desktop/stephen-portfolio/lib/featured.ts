@@ -19,7 +19,7 @@ export const featured: FeaturedProject[] = [
       "Restaurant system for a London restaurant group: live kitchen screen, QR table ordering and staff permissions across branches.",
     stack: ["Next.js", "FastAPI", "Supabase", "Hetzner VPS","Docker", "TypeScript"],
     category: "Web platforms",
-    image: "/images/projects/sweet1ne.webp",
+    image: "/images/projects/sweet1ne.jpeg",
     links: {
         github: "https://sweet1ne.com/",
     },

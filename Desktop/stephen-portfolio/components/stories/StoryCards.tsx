@@ -37,7 +37,7 @@ export function QuoteCover({ story }: { story: StoryMeta }) {
         ) : (
           <span />
         )}
-        <span className="inline-flex min-h-10 items-center gap-2 rounded-full border border-line bg-ink/40 px-4 text-sm font-bold transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-ink">
+        <span className="inline-flex min-h-10 items-center gap-2 rounded-full border border-line bg-ink/40 px-4 text-sm font-bold transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-forest-deep">
           Read more
           <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">
             →

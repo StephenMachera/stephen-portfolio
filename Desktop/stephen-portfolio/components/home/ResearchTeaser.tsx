@@ -3,16 +3,14 @@ import { research } from "@/lib/research";
 import RollText from "@/components/ui/RollText";
 import GrowthTree from "@/components/home/GrowthTree";
 import SectionLabel from "@/components/motion/SectionLabel";
-import SectionDivider from "@/components/motion/SectionDivider";
 import SplitHeading from "@/components/motion/SplitHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 export default function ResearchTeaser() {
   return (
-    <section id="research" className="relative">
-      <SectionDivider />
+    <section id="research" className="relative bg-surface">
 
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20 lg:py-32">
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20 lg:py-20">
         {/* Left: the idea */}
         <div>
           <SectionLabel>Research</SectionLabel>

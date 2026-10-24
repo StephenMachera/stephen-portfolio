@@ -4,7 +4,6 @@ import { doors, type Door } from "@/lib/doors";
 import { ctaLink } from "@/lib/nav";
 import RollText from "@/components/ui/RollText";
 import SectionLabel from "@/components/motion/SectionLabel";
-import SectionDivider from "@/components/motion/SectionDivider";
 import SplitHeading from "@/components/motion/SplitHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { CardReveal } from "@/components/motion/CardReveal";
@@ -38,15 +37,15 @@ const swing =
 
 export default function Doors() {
   return (
-    <section id="doors" className="relative scroll-mt-24">
-      <SectionDivider />
+    <section id="doors" className="theme-forest relative scroll-mt-24">
 
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
         {/* Heading */}
         <div className="max-w-2xl">
           <SectionLabel>Work together</SectionLabel>
           <SplitHeading
             text="Pick your door"
+            accent={["door"]}
             className="mt-4 text-4xl font-extrabold tracking-tight lg:text-5xl"
           />
           <Reveal delay={0.2}>
@@ -65,7 +64,7 @@ export default function Doors() {
                 className="group relative block aspect-[3/4] overflow-hidden rounded-t-full border border-line [perspective:1400px]"
               >
                 {/* the room behind the door */}
-                <div className="absolute inset-0 flex flex-col justify-end bg-accent p-8 pl-[38%] text-ink">
+                <div className="absolute inset-0 flex flex-col justify-end bg-accent p-8 pl-[38%] text-forest-deep">
                   <ul className="space-y-2.5 text-sm font-medium leading-snug">
                     {door.points.map((point) => (
                       <li key={point} className="flex gap-2">

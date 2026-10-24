@@ -30,7 +30,7 @@ function Field({
       </label>
       {children}
       {error && (
-        <p id={`${htmlFor}-error`} className="mt-2 text-sm text-red-300">
+        <p id={`${htmlFor}-error`} className="mt-2 text-sm text-red-600">
           {error}
         </p>
       )}
@@ -165,7 +165,7 @@ function FormInner({ initialTopic, onReset }: { initialTopic: TopicId; onReset: 
                 onChange={() => setTopic(t.id)}
                 className="peer sr-only"
               />
-              <span className="inline-flex min-h-11 items-center rounded-full border border-line px-5 text-sm font-medium transition-all duration-200 hover:border-fg-faint peer-checked:border-accent peer-checked:bg-accent peer-checked:text-ink peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ink">
+              <span className="inline-flex min-h-11 items-center rounded-full border border-line px-5 text-sm font-medium transition-all duration-200 hover:border-fg-faint peer-checked:border-accent peer-checked:bg-accent peer-checked:text-forest-deep peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ink">
                 {t.label}
               </span>
             </label>
@@ -232,7 +232,7 @@ function FormInner({ initialTopic, onReset }: { initialTopic: TopicId; onReset: 
       </Field>
 
       {formError && (
-        <p role="alert" className="rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200">
+        <p role="alert" className="rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-700">
           {formError}
         </p>
       )}
@@ -242,11 +242,11 @@ function FormInner({ initialTopic, onReset }: { initialTopic: TopicId; onReset: 
         <button
           type="submit"
           disabled={pending}
-          className="group inline-flex min-h-13 items-center gap-2 rounded-full bg-accent px-7 font-bold text-ink transition-[transform,opacity] duration-200 active:scale-[0.97] disabled:opacity-60"
+          className="group inline-flex min-h-13 items-center gap-2 rounded-full bg-accent px-7 font-bold text-forest-deep transition-[transform,opacity] duration-200 active:scale-[0.97] disabled:opacity-60"
         >
           {pending ? (
             <>
-              <span aria-hidden="true" className="size-4 animate-spin rounded-full border-2 border-ink border-t-transparent" />
+              <span aria-hidden="true" className="size-4 animate-spin rounded-full border-2 border-forest-deep border-t-transparent" />
               Sending…
             </>
           ) : (

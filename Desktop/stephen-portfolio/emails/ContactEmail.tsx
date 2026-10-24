@@ -5,6 +5,7 @@ import {
   Head,
   Hr,
   Html,
+  Img,
   Link,
   Preview,
   Section,
@@ -20,6 +21,7 @@ export type ContactEmailProps = {
   details: { label: string; value: string }[]; // company, role, budget, timeline…
   receivedAt: string;  // e.g. "Sun, 4 Oct 2026 · 04:18"
   siteUrl?: string;
+  receiptUrl?: string; // 1×1 pixel: loads when you open this email → the visitor is told you read it
 };
 
 // Your site's colours — emails need plain values, not CSS variables
@@ -56,6 +58,7 @@ export default function ContactEmail({
   details,
   receivedAt,
   siteUrl = "https://example.com",
+  receiptUrl,
 }: ContactEmailProps) {
   const first = name.split(" ")[0];
   const rows = [
@@ -242,6 +245,7 @@ export default function ContactEmail({
               Open portfolio ↗
             </Link>
           </Text>
+          {receiptUrl && <Img src={receiptUrl} width="1" height="1" alt="" style={{ display: "block" }} />}
         </Container>
       </Body>
     </Html>

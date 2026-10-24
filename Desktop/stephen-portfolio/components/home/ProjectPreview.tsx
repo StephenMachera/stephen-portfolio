@@ -89,7 +89,7 @@ export default function ProjectPreview() {
             ))}
 
             {/* appears on hover */}
-            <span className="absolute bottom-4 right-4 inline-flex translate-y-2 items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-bold text-ink opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+            <span className="absolute bottom-4 right-4 inline-flex translate-y-2 items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-bold text-forest-deep opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
               View project <span aria-hidden="true">→</span>
             </span>
           </Link>

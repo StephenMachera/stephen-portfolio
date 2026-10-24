@@ -3,6 +3,9 @@
 import { Resend } from "resend";
 import { isTopic, topicLabel, topicPhrase, type TopicId } from "@/lib/contact";
 import ContactEmail from "@/emails/ContactEmail";
+import ClientEmail from "@/emails/ClientEmail";
+import { makeReceiptToken } from "@/lib/receipt";
+import { site } from "@/lib/site";
 
 type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
@@ -71,6 +74,12 @@ export async function sendMessage(_prev: FormState, formData: FormData): Promise
     message,
   ].join("\n");
 
+  // the read-receipt link: loads only when YOU open the email
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/$/, "");
+  const receiptUrl = siteUrl
+    ? `${siteUrl}/api/receipt/${makeReceiptToken({ n: name, e: email, t: topicLabel(topic) })}`
+    : undefined;
+
   // 4. send
   try {
     const resend = new Resend(apiKey);
@@ -88,10 +97,26 @@ export async function sendMessage(_prev: FormState, formData: FormData): Promise
         details,
         receivedAt,
         siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
+        receiptUrl,
       }),
       text,
     });
     if (error) throw error;
+
+    // 5. tell the visitor it arrived — if this fails, the message still went through
+    try {
+      const { error: confirmError } = await resend.emails.send({
+        from: process.env.CONTACT_FROM_EMAIL ?? "Stephen Machera <onboarding@resend.dev>",
+        to: email,
+        replyTo: to,
+        subject: "Got your message — Stephen Machera",
+        react: ClientEmail({ kind: "received", name, topic: topicLabel(topic), replyTime: site.replyTime }),
+      });
+      if (confirmError) throw confirmError;
+    } catch (confirmErr) {
+      console.error("Confirmation email failed:", confirmErr);
+    }
+
     return { status: "success" };
   } catch (err) {
     console.error("Contact form failed:", err);

@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Providers from "@/components/motion/Providers";
 
-const bricolage = Bricolage_Grotesque({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-bricolage",
   display: "swap",
@@ -33,19 +33,19 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0c0e12",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${jakarta.variable} ${plexMono.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <Providers>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-5 focus:py-3 focus:font-bold focus:text-ink"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-5 focus:py-3 focus:font-bold focus:text-forest-deep"
           >
             Skip to content
           </a>
@@ -53,7 +53,7 @@ export default function RootLayout({
           <Header />
 
           {/* the "curtain" — lifts away to reveal the footer */}
-          <div className="relative z-10 flex flex-1 flex-col rounded-b-[2rem] border-b border-line bg-ink lg:rounded-b-[2.5rem]">
+          <div className="relative z-10 flex flex-1 flex-col bg-ink">
             <main id="main" className="flex-1">
               {children}
             </main>

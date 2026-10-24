@@ -3,18 +3,27 @@
 
 /* 1. Colours and animations — become Tailwind classes */
 @theme {
-  --color-ink: #0c0e12;        /* page background */
-  --color-surface: #14171d;    /* cards and panels */
-  --color-line: rgb(236 233 226 / 0.12); /* thin borders */
+  --color-ink: #ffffff;        /* page background */
+  --color-surface: #f4f5f2;    /* cards and panels */
+  --color-line: rgb(20 40 26 / 0.12); /* thin borders */
 
-  --color-fg: #ece9e2;         /* main text */
-  --color-fg-soft: #c9c6be;    /* paragraphs */
-  --color-fg-muted: #a3a29c;   /* labels, small text */
-  --color-fg-faint: #7d7c77;   /* least important text */
+  --color-fg: #16241b;         /* main text */
+  --color-fg-soft: #46524a;    /* paragraphs */
+  --color-fg-muted: #66716a;   /* labels, small text */
+  --color-fg-faint: #86908a;   /* least important text */
 
-  --color-accent: #ffce47;     /* yellow: buttons, links, dots */
+  --color-accent: #ffab00;     /* amber: buttons, highlights, dots */
 
-   --color-ink-deep: #07080a;
+  --color-forest: #2d4f34;       /* green sections, pills */
+  --color-forest-deep: #1f3a27;  /* text on amber, copyright bar */
+  --color-ink-deep: #1f3a27;
+
+  --animate-marquee: marquee 28s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
 
   /* gives you the class: animate-dot-wander */
   --animate-dot-wander: dot-wander 16s ease-in-out infinite alternate;
@@ -68,7 +77,7 @@
 @layer base {
   html {
     background-color: var(--color-ink);
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
@@ -80,7 +89,22 @@
 
   ::selection {
     background-color: var(--color-accent);
-    color: var(--color-ink);
+    color: var(--color-forest-deep);
+  }
+}
+
+/* The green sections: same tokens, flipped, so every component inside just works */
+@layer components {
+  .theme-forest {
+    --color-ink: var(--color-forest);
+    --color-surface: #3a5e41;
+    --color-line: rgb(255 255 255 / 0.16);
+    --color-fg: #ffffff;
+    --color-fg-soft: #e3ebe5;
+    --color-fg-muted: #bccabf;
+    --color-fg-faint: #9fb1a3;
+    background-color: var(--color-forest);
+    color: var(--color-fg);
   }
 }
 
@@ -146,6 +170,19 @@
   /* no mouse = no cursor spotlight */
   @media (hover: none) {
     .dot-cursor { display: none; }
+  }
+}
+
+/* Touch screens: pills and buttons "press in" when tapped */
+@media (hover: none) {
+  a[class*="rounded-full"],
+  button[class*="rounded-full"] {
+    transition: scale 150ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  a[class*="rounded-full"]:active,
+  button[class*="rounded-full"]:active {
+    scale: 0.96;
   }
 }
 

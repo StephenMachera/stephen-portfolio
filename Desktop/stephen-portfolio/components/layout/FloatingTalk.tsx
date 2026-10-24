@@ -38,17 +38,22 @@ export default function FloatingTalk({ suppressed }: Props) {
     // outer: position + show/hide animation
     <div
       inert={!visible}
-      className={`hidden lg:block fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-5 z-20 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]  ${
+      className={`lg:hidden fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-5 z-20 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]  ${
         visible
           ? "translate-y-0 scale-100 opacity-100"
           : "pointer-events-none translate-y-6 scale-90 opacity-0"
       }`}
     >
+      {/* soft pulse ring behind the button */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 animate-ping rounded-full bg-accent opacity-40 [animation-duration:2.4s]"
+      />
       {/* inner: the magnetic button */}
       <MagneticLink
         href={ctaLink.href}
         ariaLabel={ctaLink.label}
-        className="inline-flex size-14 items-center justify-center rounded-full bg-accent font-bold text-ink ring-1 ring-ink/20 lg:size-auto lg:min-h-14 lg:px-6"
+        className="inline-flex size-14 items-center justify-center rounded-full bg-accent font-bold text-forest-deep shadow-[0_8px_24px_rgb(20_40_26/0.3)]"
       >
         {/* chat bubble icon */}
         <svg
@@ -64,9 +69,6 @@ export default function FloatingTalk({ suppressed }: Props) {
         >
           <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z" />
         </svg>
-        <span className="hidden lg:inline">
-          <RollText text={ctaLink.label} />
-        </span>
       </MagneticLink>
     </div>
   );

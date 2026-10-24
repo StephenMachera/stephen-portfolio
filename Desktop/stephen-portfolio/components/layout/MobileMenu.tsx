@@ -47,7 +47,7 @@ export default function MobileMenu({ open, onClose, pathname }: Props) {
     <div
       id="mobile-menu"
       inert={!open}
-      className={`fixed inset-0 z-30 bg-ink transition-[opacity,visibility] duration-500 lg:hidden ${
+      className={`theme-forest fixed inset-0 z-30 transition-[opacity,visibility] duration-500 lg:hidden ${
         open ? "visible opacity-100" : "invisible opacity-0"
       }`}
     >
@@ -112,7 +112,7 @@ export default function MobileMenu({ open, onClose, pathname }: Props) {
           <Link
             href={ctaLink.href}
             onClick={onClose}
-            className="inline-flex min-h-14 animate-float items-center gap-2 rounded-full bg-accent px-8 text-lg font-bold text-ink"
+            className="inline-flex min-h-14 animate-float items-center gap-2 rounded-full bg-accent px-8 text-lg font-bold text-forest-deep"
           >
             {ctaLink.label}
             <svg

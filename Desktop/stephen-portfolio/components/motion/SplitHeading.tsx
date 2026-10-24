@@ -32,7 +32,7 @@ export default function SplitHeading({ text, accent = [], className, as = "h2" }
           className="mr-[0.25em] inline-block overflow-hidden pb-[0.12em] align-bottom"
         >
           <motion.span
-            className={`inline-block ${accent.includes(clean(word)) ? "text-accent" : ""}`}
+            className={`inline-block ${accent.includes(clean(word)) ? "italic text-accent" : ""}`}
             variants={{
               hidden: { y: "110%" },
               show: { y: "0%", transition: { duration: 0.9, ease } },

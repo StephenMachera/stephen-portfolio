@@ -16,25 +16,19 @@ export default function Header() {
   const closeMenu = useCallback(() => setOpen(false), []);
 
   // locked: the header never hides while the menu is open
-  const { scrolled, hidden } = useScrollHeader({ locked: open });
+  const { scrolled } = useScrollHeader({ locked: open });
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-40 border-b transition-[transform,background-color,border-color] duration-300 ease-out focus-within:translate-y-0 ${
-          hidden ? "-translate-y-full" : "translate-y-0"
-        } ${
-          scrolled && !open
-            ? "border-line bg-ink/75 backdrop-blur-md"
-            : "border-transparent bg-transparent"
-        }`}
+        className="fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6"
       >
         <div
-          className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 transition-[height] duration-300 ease-out ${
-            scrolled ? "h-17" : "h-22"
+          className={`theme-forest mx-auto flex max-w-6xl items-center justify-between gap-6 rounded-full pl-5 pr-2 shadow-[0_8px_24px_rgb(20_40_26/0.18)] transition-[height] duration-300 ease-out ${
+            scrolled ? "h-14" : "h-16"
           }`}
         >
-          {/* Logo: moon + name (name fades out after scrolling) */}
+          {/* Logo: moon + name */}
           <Link
             href="/"
             onClick={closeMenu}
@@ -45,12 +39,7 @@ export default function Header() {
               aria-hidden="true"
               className="size-7 shrink-0 rounded-full bg-accent shadow-[inset_-8px_-3px_0_0_var(--color-ink)]"
             />
-            <span
-              aria-hidden="true"
-              className={`overflow-hidden whitespace-nowrap transition-all duration-300 ease-out ${
-                scrolled ? "ml-0 max-w-0 opacity-0" : "ml-3 max-w-48 opacity-100"
-              }`}
-            >
+            <span aria-hidden="true" className="ml-3 whitespace-nowrap">
               Stephen Machera
             </span>
           </Link>
@@ -66,16 +55,10 @@ export default function Header() {
                       href={link.href}
                       aria-current={active ? "page" : undefined}
                       className={`group relative inline-block py-2 transition-colors duration-300 ${
-                        active ? "text-fg" : "text-fg-muted hover:text-fg"
+                        active ? "text-accent" : "text-fg hover:text-accent"
                       }`}
                     >
                       <RollText text={link.label} />
-                      {active && (
-                        <span
-                          aria-hidden="true"
-                          className="absolute -bottom-1 left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-accent"
-                        />
-                      )}
                     </Link>
                   </li>
                 );
@@ -83,10 +66,10 @@ export default function Header() {
             </ul>
           </nav>
 
-          {/* Let's Talk — desktop only: magnetic + text roll */}
+          {/* Let's Talk — desktop only: white pill, magnetic + text roll */}
           <MagneticLink
             href={ctaLink.href}
-            className="hidden min-h-11 items-center rounded-full border border-line px-5 text-[15px] font-medium transition-colors duration-300 hover:border-accent hover:text-accent lg:inline-flex"
+            className="hidden min-h-11 items-center rounded-full bg-white px-6 text-[15px] font-bold text-forest-deep lg:inline-flex"
           >
             <RollText text={ctaLink.label} />
           </MagneticLink>

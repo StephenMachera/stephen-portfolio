@@ -88,7 +88,7 @@ export function Experience() {
           <a
             href={site.cvUrl}
             download
-            className="mt-7 inline-flex min-h-11 items-center gap-2.5 rounded-full border border-accent px-5 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-ink active:bg-accent active:text-ink"
+            className="mt-7 inline-flex min-h-11 items-center gap-2.5 rounded-full border border-accent px-5 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-forest-deep active:bg-accent active:text-forest-deep"
           >
             <svg aria-hidden width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 3v12" />
@@ -316,7 +316,7 @@ export function WhatsNext() {
           <div className="animate-float mt-9 inline-block">
             <Link
               href="/lets-talk"
-              className="inline-flex min-h-14 items-center gap-2 rounded-full bg-accent px-8 text-lg font-extrabold text-ink transition-transform hover:scale-105 active:scale-95"
+              className="inline-flex min-h-14 items-center gap-2 rounded-full bg-accent px-8 text-lg font-extrabold text-forest-deep transition-transform hover:scale-105 active:scale-95"
             >
               Let&apos;s Talk <span aria-hidden>→</span>
             </Link>

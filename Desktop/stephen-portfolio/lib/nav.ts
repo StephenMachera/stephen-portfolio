@@ -11,10 +11,11 @@ export type NavLink = {
 
 export const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
-  { href: "/journey", label: "My Journey" },
   { href: "/projects", label: "Projects" },
-  { href: "/research", label: "Research" },
-  { href: "/stories", label: "Stories" },
+  {href: "/lets-talk", label: "Contact" },
+  // { href: "/journey", label: "My Journey" },
+  // { href: "/research", label: "Research" },
+  // { href: "/stories", label: "Stories" },
 ];
 
 export const ctaLink: NavLink = { href: "/lets-talk", label: "Let's Talk" };
