@@ -53,7 +53,7 @@ export default function RootLayout({
           <Header />
 
           {/* the "curtain" — lifts away to reveal the footer */}
-          <div className="relative z-10 flex flex-1 flex-col bg-ink">
+          <div className="relative z-10 flex flex-1 flex-col overflow-x-clip bg-ink">
             <main id="main" className="flex-1">
               {children}
             </main>

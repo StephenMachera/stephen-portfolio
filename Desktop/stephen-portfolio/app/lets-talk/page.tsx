@@ -89,7 +89,7 @@ export default async function LetsTalkPage({
 
       {/* ───────── Form + channels ───────── */}
       <section className="relative">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-14 lg:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-10 px-6 py-16 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-14 lg:py-24">
           <Reveal delay={0.1}>
             <div className="rounded-3xl border border-line bg-white p-6 shadow-[0_20px_50px_rgb(20_40_26/0.08)] lg:p-10">
               <h2 className="text-2xl font-extrabold tracking-tight lg:text-3xl">

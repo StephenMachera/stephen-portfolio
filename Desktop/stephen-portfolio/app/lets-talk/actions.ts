@@ -39,6 +39,12 @@ export async function sendMessage(_prev: FormState, formData: FormData): Promise
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
   if (!apiKey || !to) {
+    // shows up in your host's logs, so you can see exactly what's missing
+    console.error(
+      `Contact form: missing environment variable(s): ${[!apiKey && "RESEND_API_KEY", !to && "CONTACT_TO_EMAIL"]
+        .filter(Boolean)
+        .join(", ")}. Add them in your hosting dashboard and redeploy.`,
+    );
     return {
       status: "error",
       message: "The form isn't connected yet. Please email or WhatsApp me directly for now.",
@@ -101,7 +107,10 @@ export async function sendMessage(_prev: FormState, formData: FormData): Promise
       }),
       text,
     });
-    if (error) throw error;
+    if (error) {
+      console.error(`Contact form: Resend rejected the email (${error.name}): ${error.message}`);
+      throw error;
+    }
 
     // 5. tell the visitor it arrived — if this fails, the message still went through
     try {
